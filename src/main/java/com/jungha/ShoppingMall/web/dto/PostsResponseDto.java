@@ -1,7 +1,9 @@
 package com.jungha.ShoppingMall.web.dto;
 
 import com.jungha.ShoppingMall.domain.posts.Posts;
+import lombok.Getter;
 
+@Getter
 public class PostsResponseDto {
 
     private Long id;
