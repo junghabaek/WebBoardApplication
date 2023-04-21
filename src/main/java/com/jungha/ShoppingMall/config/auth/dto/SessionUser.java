@@ -1,4 +1,4 @@
-package com.jungha.ShoppingMall.config.auth;
+package com.jungha.ShoppingMall.config.auth.dto;
 
 import com.jungha.ShoppingMall.domain.user.Users;
 import lombok.Getter;

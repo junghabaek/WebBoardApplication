@@ -27,6 +27,13 @@ public class Users extends BaseTimeEntity {
     @Column(nullable = false)
     private Role role;
 
+//    @PrePersist
+//    public void prePersist(){
+//        this.name="정하";
+//        this.email="jungha@naver.com";
+//
+//    }
+
     @Builder
     public Users(String name, String email, String picture, Role role){
         this.name = name;

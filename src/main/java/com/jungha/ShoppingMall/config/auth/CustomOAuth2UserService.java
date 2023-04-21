@@ -2,6 +2,7 @@ package com.jungha.ShoppingMall.config.auth;
 
 
 import com.jungha.ShoppingMall.config.auth.dto.OAuthAttributes;
+import com.jungha.ShoppingMall.config.auth.dto.SessionUser;
 import com.jungha.ShoppingMall.domain.user.Users;
 import com.jungha.ShoppingMall.domain.user.UserRepository;
 import jakarta.servlet.http.HttpSession;
@@ -28,9 +29,13 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuth2UserService<OAuth2UserRequest,OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
-        String registrationId = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
+        String registrationId = userRequest.getClientRegistration().getRegistrationId();
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
 
+        System.out.println("------------------------");
+        System.out.println(registrationId);
+        System.out.println(userNameAttributeName);
+        System.out.println("------------------------");
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
         Users user = saveOrUpdate(attributes);

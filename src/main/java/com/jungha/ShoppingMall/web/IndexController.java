@@ -1,7 +1,8 @@
 package com.jungha.ShoppingMall.web;
 
-//import com.jungha.ShoppingMall.config.auth.SessionUser;
-import com.jungha.ShoppingMall.config.auth.SessionUser;
+//import com.jungha.ShoppingMall.config.auth.dto.SessionUser;
+import com.jungha.ShoppingMall.config.auth.LoginUser;
+import com.jungha.ShoppingMall.config.auth.dto.SessionUser;
 import com.jungha.ShoppingMall.service.posts.PostsService;
 import com.jungha.ShoppingMall.web.dto.PostsResponseDto;
 import jakarta.servlet.http.HttpSession;
@@ -31,14 +32,13 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    public String index(Model model, Principal principal) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        //SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user !=null){
             model.addAttribute("userName", user.getName());
         }
 
-        System.out.println(principal);
         return "index";
     }
 

@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -21,6 +24,7 @@ public class HelloControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    @WithMockUser
     @Test
     public void ret_helloworld() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/hello"))
@@ -28,6 +32,7 @@ public class HelloControllerTest {
                 .andExpect(content().string("helloworld!"));
     }
 
+    @WithMockUser
     @Test
     public void ret_helloDto() throws Exception {
         String name = "hello";
